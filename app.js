@@ -1,5 +1,4 @@
 const SEARCH_URL = "https://search.rcsb.org/rcsbsearch/v2/query";
-const GRAPHQL_URL = "https://data.rcsb.org/graphql";
 const PAGE_SIZE = 24;
 
 const grid = document.querySelector("#proteinGrid");
@@ -38,10 +37,6 @@ function debounce(callback, delay = 350) {
     window.clearTimeout(timeoutId);
     timeoutId = window.setTimeout(() => callback(...args), delay);
   };
-}
-
-function viewerUrl(code) {
-  return `https://molstar.org/viewer/?pdb=${encodeURIComponent(code)}&hide-controls=1`;
 }
 
 function searchPayload(query, start) {
@@ -183,47 +178,12 @@ function normalizeEntry(entry) {
   };
 }
 
-function uniqueValues(values = []) {
-  return [...new Set(values.filter(Boolean))];
-}
-
-function titleCase(value = "") {
-  const lower = value.toLowerCase();
-
-  return lower.replace(/\b[a-z]/g, (letter) => letter.toUpperCase());
-}
-
-function formatDate(value) {
-  if (!value) return "Unknown";
-
-  const date = new Date(value);
-
-  if (Number.isNaN(date.getTime())) return "Unknown";
-
-  return date.getUTCFullYear().toString();
-}
-
-function createTextElement(tag, className, text) {
-  const element = document.createElement(tag);
-  element.className = className;
-  element.textContent = text;
-
-  return element;
-}
-
-function metadataItem(label, value) {
-  const wrapper = document.createElement("div");
-  const term = document.createElement("dt");
-  const description = document.createElement("dd");
-
-  term.textContent = label;
-  description.textContent = value;
-  wrapper.append(term, description);
-
-  return wrapper;
-}
-
 function proteinCard(protein) {
+  const link = document.createElement("a");
+  link.className = "protein-card-link";
+  link.href = `./protein.html?code=${encodeURIComponent(protein.code)}`;
+  link.setAttribute("aria-label", `View details for ${protein.code}: ${protein.name}`);
+
   const card = document.createElement("article");
   card.className = "protein-card";
 
@@ -260,8 +220,9 @@ function proteinCard(protein) {
 
   body.append(topLine, name, summary, metadata);
   card.append(viewerShell, body);
+  link.append(card);
 
-  return card;
+  return link;
 }
 
 function setStatus(message) {
@@ -374,4 +335,7 @@ searchInput.addEventListener(
   }),
 );
 
-resetResults("");
+const initialQuery = new URLSearchParams(window.location.search).get("q")?.trim() || "";
+searchInput.value = initialQuery;
+syncQuickSearch(initialQuery);
+resetResults(initialQuery);

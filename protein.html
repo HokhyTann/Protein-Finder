@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Protein Finder</title>
+    <link rel="preconnect" href="https://molstar.org">
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="./index.html" aria-label="Protein Finder home">
+        <span class="brand-mark">PF</span>
+        <span>Protein Finder</span>
+      </a>
+      <form class="search" role="search" action="./index.html" method="get">
+        <input name="q" type="search" placeholder="Search proteins or PDB codes" autocomplete="off">
+      </form>
+    </header>
+
+    <main id="detailMain">
+      <p class="detail-status" id="detailStatus">Loading protein from RCSB PDB...</p>
+      <div id="detailContent" hidden></div>
+      <section class="detail-error" id="detailError" hidden>
+        <h1>Protein not found</h1>
+        <p id="detailErrorMessage">This PDB entry could not be loaded.</p>
+        <a class="back-link" href="./index.html">Back to browse</a>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Made with ❤️ From Cambodia 🇰🇭</p>
+      <p>Hokhy Tann</p>
+    </footer>
+
+    <script src="./shared.js"></script>
+    <script src="./protein.js"></script>
+  </body>
+</html>
