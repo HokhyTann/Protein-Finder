@@ -1,54 +1,63 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Protein Finder</title>
-    <link rel="preconnect" href="https://molstar.org">
-    <link rel="stylesheet" href="./styles.css">
-  </head>
-  <body>
-    <header class="topbar">
-      <a class="brand" href="./index.html" aria-label="Protein Finder home">
-        <span class="brand-mark">PF</span>
-        <span>Protein Finder</span>
-      </a>
-      <form class="search" role="search">
-        <input id="searchInput" type="search" placeholder="Search proteins or PDB codes" autocomplete="off">
-      </form>
-    </header>
 
-    <main>
-      <section class="browse-header" aria-labelledby="pageTitle">
-        <div>
-          <p class="eyebrow">RCSB PDB live data</p>
-          <h1 id="pageTitle">Browse protein structures</h1>
-        </div>
-        <div class="filter-row" aria-label="Suggested searches">
-          <button class="filter is-active" type="button" data-query="">All</button>
-          <button class="filter" type="button" data-query="hemoglobin">Hemoglobin</button>
-          <button class="filter" type="button" data-query="kinase">Kinase</button>
-          <button class="filter" type="button" data-query="antibody">Antibody</button>
-          <button class="filter" type="button" data-query="viral">Viral</button>
-        </div>
-      </section>
+<head>
+  <meta property="og:title" content="Protein Finder" />
+  <meta property="og:description"
+    content="Explore proteins and their structures using data from the Protein Data Bank." />
+  <meta property="og:image" content="./protein-finder-preview.png" />
+  <meta property="og:url" content="https://proteinfinder.netlify.app" />
+  <meta property="og:type" content="website" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Protein Finder</title>
+  <link rel="preconnect" href="https://molstar.org">
+  <link rel="stylesheet" href="./styles.css">
+</head>
 
-      <p class="result-status" id="resultStatus">Loading proteins from RCSB PDB...</p>
-      <section class="protein-grid" id="proteinGrid" aria-live="polite"></section>
-      <p class="empty-state" id="emptyState" hidden>No matching proteins found.</p>
-      <nav class="pagination" aria-label="Protein results pages">
-        <button class="page-button" id="prevPageButton" type="button">Previous</button>
-        <span class="page-indicator" id="pageIndicator">Page 1</span>
-        <button class="page-button" id="nextPageButton" type="button">Next</button>
-      </nav>
-    </main>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./index.html" aria-label="Protein Finder home">
+      <span class="brand-mark">PF</span>
+      <span>Protein Finder</span>
+    </a>
+    <form class="search" role="search">
+      <input id="searchInput" type="search" placeholder="Search proteins or PDB codes" autocomplete="off">
+    </form>
+  </header>
 
-    <footer class="site-footer">
-      <p>Made with ❤️ From Cambodia 🇰🇭</p>
-      <p>Hokhy Tann</p>
-    </footer>
+  <main>
+    <section class="browse-header" aria-labelledby="pageTitle">
+      <div>
+        <p class="eyebrow">RCSB PDB live data</p>
+        <h1 id="pageTitle">Browse protein structures</h1>
+      </div>
+      <div class="filter-row" aria-label="Suggested searches">
+        <button class="filter is-active" type="button" data-query="">All</button>
+        <button class="filter" type="button" data-query="hemoglobin">Hemoglobin</button>
+        <button class="filter" type="button" data-query="kinase">Kinase</button>
+        <button class="filter" type="button" data-query="antibody">Antibody</button>
+        <button class="filter" type="button" data-query="viral">Viral</button>
+      </div>
+    </section>
 
-    <script src="./shared.js"></script>
-    <script src="./app.js"></script>
-  </body>
+    <p class="result-status" id="resultStatus">Loading proteins from RCSB PDB...</p>
+    <section class="protein-grid" id="proteinGrid" aria-live="polite"></section>
+    <p class="empty-state" id="emptyState" hidden>No matching proteins found.</p>
+    <nav class="pagination" aria-label="Protein results pages">
+      <button class="page-button" id="prevPageButton" type="button">Previous</button>
+      <span class="page-indicator" id="pageIndicator">Page 1</span>
+      <button class="page-button" id="nextPageButton" type="button">Next</button>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    <p>Made with ❤️ From Cambodia 🇰🇭</p>
+    <p>Hokhy Tann</p>
+  </footer>
+
+  <script src="./shared.js"></script>
+  <script src="./app.js"></script>
+</body>
+
 </html>
